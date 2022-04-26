@@ -45,7 +45,7 @@ int main()
     {
         using namespace Hundred;
         cout << "~~~~~ HUNDRED TIME ~~~~~" << endl;
-        for (Time i = 5_th; i > 2_th; i-= 33_tl) {
+        for (Time i = 5_th; i > 0_th; i-= 33_tl) {
             printTime(i);
         }
     }

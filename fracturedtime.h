@@ -6,6 +6,7 @@
 #include <chrono>
 #include <tuple>
 #include <utility>
+#include <type_traits>
 
 #define REGISTER_FRACTURED_TIME(type, value)\
 using T = type;\
@@ -136,6 +137,11 @@ FracturedTime<T, maxTl> FracturedTime<T, maxTl>::operator +(const FracturedTime<
 template<typename T, T maxTl>
 FracturedTime<T, maxTl> FracturedTime<T, maxTl>::operator -(const FracturedTime<T, maxTl> &right) const
 {
+    if (!std::is_signed<T>::value) {
+        if (*this < right) {
+            return {0, 0};
+        }
+    }
     if (tl < right.tl) { // TODO find better way
         const T rtl = right.getTl();
         T ctl = getTl();
